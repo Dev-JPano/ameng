@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A static personal portfolio for Jherra Mae Pano." />
+  <title>Jherra Mae Pano | Ameng Portfolio</title>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jherra Mae Pano | Ameng Portfolio" />
+  <meta property="og:description" content="Discover Jherra Mae Pano's personal website, gallery, skills, achievements, and favorite moments." />
+  <meta property="og:image" content="https://res.cloudinary.com/dliri1ig9/image/upload/v1780729756/profile/2_jdjvdn.png" id="metaOgImage" />
+  <meta property="og:image:alt" content="Jherra Mae Pano" id="metaOgImageAlt" />
+  <meta property="og:url" content="" id="metaOgUrl" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jherra Mae Pano | Ameng Portfolio" />
+  <meta name="twitter:description" content="Discover Jherra Mae Pano's personal website, gallery, skills, achievements, and favorite moments." />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dliri1ig9/image/upload/v1780729758/profile/9_bkdalc.png" id="metaTwitterImage" />
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dliri1ig9/image/upload/v1780736618/logo_2_t0mw9m.png" id="siteFavicon" />
+  <link rel="shortcut icon" href="https://res.cloudinary.com/dliri1ig9/image/upload/v1780736618/logo_2_t0mw9m.png" />
+  <link rel="apple-touch-icon" href="https://res.cloudinary.com/dliri1ig9/image/upload/v1780736618/logo_2_t0mw9m.png" id="siteAppleTouchIcon" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="cursor-core" id="cursorCore" aria-hidden="true"></div>
+  <div class="cursor-halo" id="cursorHalo" aria-hidden="true"></div>
+
+  <header class="app-header">
+    <a href="#home" class="brand">
+      <span class="brand-icon" id="brandIcon">A</span>
+      <span class="brand-name" id="brandName">Ameng</span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#home" class="nav-item active" data-nav-section="home">Home</a>
+      <a href="#about" class="nav-item" data-nav-section="about">About</a>
+      <a href="#skills" class="nav-item" data-nav-section="skills">Skills</a>
+      <a href="#achievements" class="nav-item" data-nav-section="achievements">Achievements</a>
+      <a href="#gallery" class="nav-item" data-nav-section="gallery">Gallery</a>
+    </nav>
+
+    <div class="header-controls">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">
+        <span id="themeIcon">☀</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+        <span class="menu-line"></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero nav-section" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="hero-layout">
+        <div class="hero-name-wrap">
+          <h1 class="hero-name" id="heroName" aria-label="Jherra Mae Pano">
+            <span class="name-line">
+              <span class="name-part">Jherra</span>
+              <span class="name-part">Mae</span>
+            </span>
+            <span class="name-line">
+              <span class="name-part">Pano</span>
+            </span>
+          </h1>
+        </div>
+
+        <figure class="main-photo" id="mainPhoto">
+          <div class="main-photo-glow" aria-hidden="true"></div>
+          <div class="main-photo-effects" id="mainPhotoEffects" aria-hidden="true"></div>
+          <img id="mainPhotoImg" src="" alt="" />
+          <figcaption id="mainPhotoCaption"></figcaption>
+        </figure>
+
+        <div class="waiting-panel" aria-label="Waiting profile photos">
+          <div class="waiting-book" id="waitingBook"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about nav-section" id="about">
+      <div class="about-shell">
+        <div class="section-intro reveal">
+          <span class="section-label">About Me</span>
+          <h2 id="aboutTagline">Learning with joy, growing with confidence.</h2>
+        </div>
+
+        <div class="story-layout">
+          <article class="story-main reveal">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7.2v9.6L12 21l8-4.2V7.2L12 3Zm0 2.26 5.65 2.94L12 11.14 6.35 8.2 12 5.26ZM6 10.05l5 2.6v5.6l-5-2.6v-5.6Zm7 8.2v-5.6l5-2.6v5.6l-5 2.6Z"/></svg>
+            </div>
+            <h3>My story</h3>
+            <div id="storyText"></div>
+          </article>
+
+          <aside class="about-side">
+            <article class="info-card reveal">
+              <div class="icon-box small">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 8l10 5 8-4v6h2V8L12 3Zm-6 8.18V15c0 2.2 3.58 4 6 4s6-1.8 6-4v-3.82l-6 3-6-3Z"/></svg>
+              </div>
+              <h3>School life</h3>
+              <p id="schoolLife"></p>
+            </article>
+
+            <article class="info-card reveal">
+              <div class="icon-box small">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+              </div>
+              <h3>Yearly growth</h3>
+              <p id="yearlyGrowth"></p>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills nav-section" id="skills">
+      <div class="section-intro reveal">
+        <span class="section-label">Skills</span>
+        <h2>Things I enjoy practicing</h2>
+        <p>These talents can be updated as I grow, improve, and discover new interests every school year.</p>
+      </div>
+
+      <div class="skill-grid" id="skillGrid"></div>
+    </section>
+
+    <section class="section achievements nav-section" id="achievements" data-optional-section="achievements">
+      <div class="section-intro reveal">
+        <span class="section-label">Achievements</span>
+        <h2>Milestones I can look back on</h2>
+        <p>Certificates, recognitions, performances, and meaningful school activities can be placed here.</p>
+      </div>
+
+      <div class="achievement-grid" id="achievementGrid"></div>
+    </section>
+
+    <section class="section gallery nav-section" id="gallery">
+      <div class="section-intro reveal">
+        <span class="section-label">Gallery</span>
+        <h2>Profile photos and random moments</h2>
+        <p>Profile photos appear in the hero and gallery. Random moments appear only in this gallery area.</p>
+      </div>
+
+      <div class="gallery-tabs reveal">
+        <button class="gallery-tab active" data-filter="all" type="button">All</button>
+        <button class="gallery-tab" data-filter="profile" type="button">Profile</button>
+        <button class="gallery-tab" data-filter="picture" type="button">Moments</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p><span id="creatorRole">Crafted and Designed by</span> <strong id="creatorName">Jhon Anthony Pano</strong></p>
+      <div class="creator-icons" id="creatorIcons"></div>
+    </div>
+  </footer>
+
+  <div class="modal" id="imageModal" aria-hidden="true" role="dialog" aria-label="Image preview">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Close image preview">×</button>
+    <figure class="modal-content">
+      <img id="modalImage" src="" alt="" />
+      <figcaption id="modalCaption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

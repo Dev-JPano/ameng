@@ -1,0 +1,136 @@
+{
+  "site": {
+    "title": "Jherra Mae Pano | Ameng Portfolio",
+    "updatedYear": "2026",
+    "themeDefault": "light",
+    "profileImageWarning": "For the hero waiting-book row, 4 to 12 profile images is recommended. Too many profile images may still fit in one row, but the thumbnails may become too narrow."
+  },
+  "sections": {
+    "achievements": false
+  },
+  "profile": {
+    "name": "Jherra Mae Pano",
+    "nickname": "Ameng",
+    "birthdate": "2016-04-05",
+    "gradeLevel": "5",
+    "schoolDisplay": "Cangawa Elementary School",
+    "cityDisplay": "Buenavista",
+    "tagline": [
+      "Learning with joy, growing with confidence.",
+      "Small steps today, brighter dreams tomorrow.",
+      "A little portfolio for my memories, talents, and dreams."
+    ]
+  },
+  "about": {
+    "story": [
+      "I am a cheerful and creative learner who enjoys discovering new things in school and expressing myself through activities that make me happy. I like learning not only from books, but also from simple experiences, school events, performances, and everyday moments with my classmates, teachers, friends, and family.",
+      "Dancing and singing are two of the things I enjoy the most because they help me become more confident and expressive. When I practice, perform, or participate in activities, I learn how to be patient, brave, and open to improvement. Each small progress reminds me that I can grow when I keep trying.",
+      "This portfolio is made to keep my favorite memories, talents, achievements, and photos in one place. As I move to the next grade level each year, this website can also grow with me by adding new pictures, new achievements, and new stories about my journey as a student."
+    ],
+    "schoolLife": "I am currently studying at Cangawa Elementary School as a Grade 5 learner. My school life is part of my growing story, where I continue to learn, make friends, join activities, and build confidence step by step.",
+    "growth": "This website is designed to be updated every year. My age is computed automatically from my birthdate, while my grade level, achievements, skills, and gallery can be changed inside data.json without redesigning the whole website."
+  },
+  "links": [
+    {
+      "type": "facebook",
+      "label": "Facebook",
+      "icon": "facebook",
+      "profile": ""
+    }
+  ],
+  "skills": [
+    {
+      "title": "Dancing",
+      "description": "I enjoy dancing because it allows me to express energy, rhythm, and confidence. It helps me become more comfortable with movement and performance."
+    },
+    {
+      "title": "Singing",
+      "description": "I love singing because music makes me happy. It helps me practice my voice, remember melodies, and express feelings in a simple and joyful way."
+    }
+  ],
+  "achievements": [
+    {
+      "img": "",
+      "title": "Achievement Title",
+      "provider": "School / Organization Name",
+      "year": "2026",
+      "description": "Write a short description of this achievement here."
+    }
+  ],
+  "gallery": {
+    "logo": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780736618/logo_2_t0mw9m.png",
+    "profile": [
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729756/profile/2_jdjvdn.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729756/profile/10_qvagss.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729756/profile/3_mhk6ta.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729756/profile/1_cv2hbb.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729756/profile/11_p3c2sh.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729756/profile/12_xhtwup.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729757/profile/4_kt5tkh.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729757/profile/5_f6gcgm.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729757/profile/6_znxdc5.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729758/profile/7_v1ahab.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729758/profile/8_o6m46b.png",
+        "description": ""
+      },
+      {
+        "img": "https://res.cloudinary.com/dliri1ig9/image/upload/v1780729758/profile/9_bkdalc.png",
+        "description": ""
+      }
+    ],
+    "picture": [
+
+    ]
+  },
+  "creator": {
+    "name": "Jhon Anthony Pano",
+    "role": "Crafted and Designed by",
+    "links": {
+      "portfolio1": "https://www.jpano.dev",
+      "portfolio2": "https://portfolio.jpano.dev",
+      "github": "https://github.com/Dev-JPano",
+      "facebook": "https://www.facebook.com/studentJPano",
+      "email": "jacpano@gmail.com",
+      "contactNumber": "(+63) 0993 885 9567",
+      "x": "https://x.com/l_synapse",
+      "telegram": "t.me/jacpano",
+      "whatsapp": "https://wa.me/639938859567",
+      "instagram": "https://www.instagram.com/riupwe",
+      "linkedin": "https://www.linkedin.com/in/jhon-anthony-pano-830242335/"
+    }
+  },
+  "hero": {
+    "mainChangeSeconds": 10
+  }
+}
