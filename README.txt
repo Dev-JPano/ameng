@@ -46,3 +46,13 @@ Important limitation for static hosting:
 - Because this site is static (ex. GitHub Pages), true per-share random preview images are not guaranteed.
 - In practice, the fallback image in the HTML is the most reliable image for link sharing.
 - If you want truly random previews for each share request, you would need server-side logic or a build step that rewrites the meta tags.
+
+
+Loading screen + cache update:
+- Added a full-screen custom loading screen with a real progress bar.
+- Progress is based on actual image assets collected from data.json.
+- The site opens only after gallery/profile/achievement images are loaded or cached.
+- Added Cache API warm-up for images.
+- Added sw.js service worker for cache-first revisits on HTTPS/localhost.
+- Browser caching/service-worker caching means repeat visits should load much faster.
+- Note: service workers require HTTPS, so caching becomes active after GitHub Pages HTTPS works.

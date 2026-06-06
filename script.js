@@ -32,6 +32,15 @@ const modalClose = $("#modalClose");
 const cursorCore = $("#cursorCore");
 const cursorHalo = $("#cursorHalo");
 
+const siteLoader = $("#siteLoader");
+const loaderLogo = $("#loaderLogo");
+const loaderBar = $("#loaderBar");
+const loaderPercent = $("#loaderPercent");
+const loaderStatus = $("#loaderStatus");
+const loaderProgress = $("#loaderProgress");
+const ASSET_CACHE_NAME = "ameng-portfolio-assets-v4";
+const ASSET_SIGNATURE_KEY = "ameng-portfolio-asset-signature-v4";
+
 let appData = null;
 let galleryFilter = "all";
 let profilePhotos = [];
@@ -46,12 +55,18 @@ async function init() {
   setupMenu();
   setupCursor();
   setupModal();
+  updateLoaderProgress(3, "Loading profile data...");
 
   try {
-    const response = await fetch(DATA_URL);
+    const response = await fetch(DATA_URL, { cache: "default" });
     if (!response.ok) throw new Error(`Could not load ${DATA_URL}`);
 
     appData = await response.json();
+    setLoaderLogo(appData);
+
+    const preloadAssets = collectPreloadAssets(appData);
+    await registerServiceWorker();
+    await preloadImageAssets(preloadAssets);
 
     applySectionVisibility(appData.sections || {});
     applyHeadBranding(appData);
@@ -67,12 +82,169 @@ async function init() {
     setupGalleryTabs();
     setupMainPhotoTilt();
     setupScrollSpy();
+
+    updateLoaderProgress(100, "Ready");
+    hideLoader();
   } catch (error) {
     console.error(error);
     heroName.textContent = "Portfolio";
+    updateLoaderProgress(100, "Loaded with some missing assets");
+    hideLoader();
   }
 }
 
+
+function updateLoaderProgress(value, status = "Loading...") {
+  const percent = Math.max(0, Math.min(100, Math.round(value)));
+
+  if (loaderBar) loaderBar.style.width = `${percent}%`;
+  if (loaderPercent) loaderPercent.textContent = `${percent}%`;
+  if (loaderStatus) loaderStatus.textContent = status;
+  if (loaderProgress) loaderProgress.setAttribute("aria-valuenow", String(percent));
+}
+
+function hideLoader() {
+  window.setTimeout(() => {
+    body.classList.add("app-loaded");
+    body.classList.remove("loader-active");
+  }, 380);
+}
+
+function setLoaderLogo(data) {
+  const logo = data?.gallery?.logo || getImageUrl(data?.gallery?.profile?.[0]) || "";
+  if (loaderLogo && logo) loaderLogo.src = logo;
+}
+
+function collectPreloadAssets(data) {
+  const gallery = data?.gallery || {};
+  const achievements = Array.isArray(data?.achievements) ? data.achievements : [];
+  const assets = [
+    gallery.logo,
+    ...(gallery.profile || []).map(getImageUrl),
+    ...(gallery.picture || []).map(getImageUrl),
+    ...achievements.map((item) => item?.img)
+  ];
+
+  return [...new Set(assets.map(resolveAssetUrl).filter(Boolean))];
+}
+
+function getImageUrl(item) {
+  return item?.img || item?.url || "";
+}
+
+function resolveAssetUrl(url) {
+  if (!valid(url)) return "";
+  try {
+    return new URL(url, window.location.href).href;
+  } catch {
+    return "";
+  }
+}
+
+async function preloadImageAssets(assets) {
+  if (!assets.length) {
+    updateLoaderProgress(100, "No images to preload");
+    return;
+  }
+
+  const signature = assets.join("|");
+  const cached = await areAssetsCached(assets);
+
+  if (localStorage.getItem(ASSET_SIGNATURE_KEY) === signature && cached) {
+    updateLoaderProgress(100, "Loaded from cache");
+    return;
+  }
+
+  let completed = 0;
+  updateLoaderProgress(6, `Preparing ${assets.length} image${assets.length === 1 ? "" : "s"}...`);
+
+  await runWithConcurrency(assets, 4, async (asset) => {
+    await Promise.allSettled([
+      decodeImage(asset),
+      warmAssetCache(asset)
+    ]);
+
+    completed += 1;
+    const progress = 6 + (completed / assets.length) * 94;
+    updateLoaderProgress(progress, `Loading images ${completed}/${assets.length}`);
+  });
+
+  localStorage.setItem(ASSET_SIGNATURE_KEY, signature);
+}
+
+async function runWithConcurrency(items, limit, worker) {
+  const queue = [...items];
+  const workers = Array.from({ length: Math.min(limit, queue.length) }, async () => {
+    while (queue.length) {
+      const item = queue.shift();
+      await worker(item);
+    }
+  });
+
+  await Promise.allSettled(workers);
+}
+
+function decodeImage(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.onload = () => {
+      if (img.decode) {
+        img.decode().catch(() => {}).finally(resolve);
+      } else {
+        resolve();
+      }
+    };
+    img.onerror = resolve;
+    img.src = src;
+  });
+}
+
+async function warmAssetCache(url) {
+  if (!("caches" in window)) return;
+
+  try {
+    const cache = await caches.open(ASSET_CACHE_NAME);
+    const request = new Request(url, { mode: "no-cors" });
+    const existing = await cache.match(request) || await cache.match(url);
+
+    if (existing) return;
+
+    const response = await fetch(request);
+    await cache.put(request, response.clone());
+  } catch (error) {
+    console.warn("Asset cache skipped:", url, error);
+  }
+}
+
+async function areAssetsCached(assets) {
+  if (!("caches" in window)) return localStorage.getItem(ASSET_SIGNATURE_KEY) === assets.join("|");
+
+  try {
+    const cache = await caches.open(ASSET_CACHE_NAME);
+    const checks = await Promise.all(assets.map(async (asset) => {
+      const request = new Request(asset, { mode: "no-cors" });
+      return Boolean(await cache.match(request) || await cache.match(asset));
+    }));
+
+    return checks.every(Boolean);
+  } catch {
+    return false;
+  }
+}
+
+async function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+
+  const isSecure = window.isSecureContext || location.hostname === "localhost";
+  if (!isSecure) return;
+
+  try {
+    await navigator.serviceWorker.register("sw.js");
+  } catch (error) {
+    console.warn("Service worker registration skipped:", error);
+  }
+}
 
 function applyHeadBranding(data) {
   const profile = data?.profile || {};
